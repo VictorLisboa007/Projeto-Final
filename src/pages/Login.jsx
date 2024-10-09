@@ -6,6 +6,8 @@ import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import { useState, useEffect } from "react";
 
+// import { useNavigate } from "react-router-dom";
+
 const url = "http://localhost:5000/usuarios"
 
 const Login = () => {
@@ -17,6 +19,8 @@ const Login = () => {
   const [alertaClass, setAlertaClass] = useState("mb-3 d-none");
   const [alertaMensagem, setAlertaMensagem] = useState("");
   const [alertaVariant, setAlertaVariant] = useState("danger");
+
+  // const navigate = useNavigate()
 
   //Lista de Usuários
   const [usuarios, setUsuarios] = useState([])
@@ -35,6 +39,47 @@ const Login = () => {
     fetchData()
   }, [])
 
+  const gravarLocalStorage = (usuario) => {
+    localStorage.setItem("userName", usuario.nome)
+    localStorage.setItem("userEmail", usuario.email)
+  }
+
+  const handleLogin = async (e) => {
+    e.preventDefault()
+
+    const user = {email, senha}
+    
+    //Verifica na lista de usuários se tem o usuário digitado
+    const userToFind = usuarios.find(
+      (userFind) => userFind.email == user.email
+    )
+
+    if(email != ""){
+      if(senha != ""){
+        if(userToFind != undefined && userToFind.senha == senha){
+          setAlertaClass("mb-3")
+          gravarLocalStorage(userToFind)
+          alert("Login efetuado com Sucesso!")
+          setAlertaMensagem("Login efetuado com Sucesso!")
+          setAlertaVariant("success")
+          // navigate("/home")
+
+        }else{
+          setAlertaClass("mb-3")
+          setAlertaMensagem("Usuário ou senha inválidos")
+        }
+
+      }else{
+        setAlertaClass("mb-3")
+        setAlertaMensagem("O campo senha não pode ser vazio")
+      }
+
+    }else{
+      setAlertaClass("mb-3")
+      setAlertaMensagem("O campo email não pode ser vazio")
+    }
+  }
+
   return (
     <div>
       <Container>
@@ -42,7 +87,7 @@ const Login = () => {
               style={{ fontSize: "100px" }}>
           login
         </span>
-        <form>
+        <form onSubmit={handleLogin}>
           {/* caixinha do email */}
           <FloatingLabel
             controlId="floatingInputEmail"
@@ -79,7 +124,7 @@ const Login = () => {
             {alertaMensagem}
           </Alert>
 
-          <Button variant="primary">Login</Button>
+          <Button variant="primary" type="submit">Login</Button>
         </form>
 
         <p>
