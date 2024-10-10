@@ -1,22 +1,32 @@
 {
   "usuarios": [
     {
-      "id": "1",
-      "nome": "principal",
-      "email": "principal@gmail.com",
-      "senha": "1234"
-    },
-    {
-      "id": "5d64",
-      "nome": "vvvvv",
-      "email": "vvvv@gmail.com",
-      "senha": "12345"
-    },
-    {
       "id": "9bd7",
       "nome": "Arrascaeta",
       "email": "arrasca@gmail.com",
-      "senha": "12345"
+      "senha": "12345",
+      "tipo": "Administrador"
+    },
+    {
+      "id": "d9a7",
+      "nome": "Sujiro Kimimame",
+      "email": "sujiro.kimimame@gmail.com",
+      "senha": "12345",
+      "tipo": "Gerente"
+    },
+    {
+      "id": "89af",
+      "nome": "Mother Fucker",
+      "email": "Mother.Fucker@gmail.com",
+      "senha": "12345",
+      "tipo": "Funcionário"
+    },
+    {
+      "id": "a573",
+      "nome": "Paula Tejano",
+      "email": "Paula.Tejano@gmail.com",
+      "senha": "14752",
+      "tipo": "Funcionário"
     }
   ]
 }

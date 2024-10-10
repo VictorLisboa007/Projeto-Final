@@ -16,6 +16,7 @@ const Cadastro = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmaSenha, setConfirmaSenha] = useState("");
+  const [tipo, setTipo] = useState("Administrador")
 
   // variaveis pro alerta
   const [alertaClass, setAlertaClass] = useState("mb-3 d-none");
@@ -29,7 +30,7 @@ const Cadastro = () => {
       if(!nome == ""){
         if(!email == ""){
           if(!senha == "" && !confirmaSenha == "" && senha === confirmaSenha){
-            const user = {nome, email, senha}
+            const user = {nome, email, senha, tipo}
             const res = await fetch(url, {
               method: "POST",
               headers: {"Content-Type":"application/json"},
@@ -40,6 +41,7 @@ const Cadastro = () => {
             setEmail("")
             setSenha("")
             setConfirmaSenha("")
+            setTipo("Administrador")
             navigate("/login")
 
           }else{
